@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DrugTarget AI - API Documentation</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-code"></i>
+                <h1>DrugTarget <span>AI</span></h1>
+            </div>
+            <p>API Documentation</p>
+        </header>
+
+        <main>
+            <div class="card" style="margin-bottom: 30px;">
+                <h2><i class="fas fa-terminal"></i> Available Endpoints</h2>
+                
+                <div class="api-endpoint">
+                    <h3>1. Predict Binding Affinity</h3>
+                    <p><strong>POST</strong> <code>/predict</code></p>
+                    <p><strong>Description:</strong> Predicts drug-target binding affinity (pKd)</p>
+                    <strong>Request Body (JSON):</strong>
+                    <pre>{
+  "smiles": "CC(=O)Oc1ccccc1C(=O)O",
+  "fasta": ">Protein\nSEQUENCEHERE..."
+}</pre>
+                    <strong>Response:</strong>
+                    <pre>{
+  "affinity_score": 7.85,
+  "unit": "pKd",
+  "interpretation": "Moderate to Strong Binding Predicted",
+  "confidence": "Medium"
+}</pre>
+                </div>
+
+                <div class="api-endpoint">
+                    <h3>2. Feature Importance</h3>
+                    <p><strong>GET</strong> <code>/feature_importance</code></p>
+                    <p>Returns which molecular and protein features are most important for prediction.</p>
+                </div>
+
+                <div class="api-endpoint">
+                    <h3>3. Model Evaluation Data</h3>
+                    <p><strong>GET</strong> <code>/evaluation_data</code></p>
+                    <p>Returns actual vs predicted values and performance metrics for charts.</p>
+                </div>
+
+                <div class="api-endpoint">
+                    <h3>4. Frontend</h3>
+                    <p><strong>GET</strong> <code>/</code> → Main Predictor Page</p>
+                    <p><strong>GET</strong> <code>/evaluation.html</code> → Model Evaluation Dashboard</p>
+                </div>
+            </div>
+
+            <div style="text-align: center;">
+                <button onclick="window.location.href='index.html'" class="btn-primary">
+                    <i class="fas fa-arrow-left"></i> Back to Predictor
+                </button>
+            </div>
+        </main>
+
+        <footer>
+            <p>DrugTarget AI API • Base URL: http://127.0.0.1:5000</p>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DrugTarget AI - Model Evaluation</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-chart-bar"></i>
+                <h1>DrugTarget <span>AI</span></h1>
+            </div>
+            <p>Model Evaluation Dashboard</p>
+            <small>XGBoost • 5-Fold Cross-Validation • R² = 0.9215</small>
+        </header>
+
+        <main>
+            <!-- Metrics Summary -->
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <h3>Mean RMSE</h3>
+                    <div class="metric-value" id="rmse">0.5825</div>
+                    <small>5-Fold CV</small>
+                </div>
+                <div class="metric-card">
+                    <h3>Mean MAE</h3>
+                    <div class="metric-value" id="mae">0.2783</div>
+                    <small>5-Fold CV</small>
+                </div>
+                <div class="metric-card">
+                    <h3>Mean R²</h3>
+                    <div class="metric-value" id="r2">0.9215</div>
+                    <small>5-Fold CV</small>
+                </div>
+            </div>
+
+            <div class="charts-grid">
+                <div class="chart-card">
+                    <h2>Actual vs Predicted</h2>
+                    <canvas id="scatterChart"></canvas>
+                </div>
+                <div class="chart-card">
+                    <h2>Feature Importance</h2>
+                    <canvas id="importanceChart"></canvas>
+                </div>
+            </div>
+
+            <div class="charts-grid">
+                <div class="chart-card">
+                    <h2>Residuals Distribution</h2>
+                    <canvas id="residualChart"></canvas>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin: 40px 0;">
+                <button onclick="refreshFeatureImportance()" class="btn-secondary">
+                    <i class="fas fa-sync"></i> Refresh Feature Importance
+                </button>
+                <button onclick="window.location.href='index.html'" class="btn-primary" style="margin-left: 15px;">
+                    <i class="fas fa-arrow-left"></i> Back to Predictor
+                </button>
+            </div>
+        </main>
+
+        <footer>
+            <p>Advanced Evaluation • Step-by-Step Drug-Target Interaction Project</p>
+        </footer>
+    </div>
+
+    <script src="evaluation.js"></script>
+</body>
+</html>

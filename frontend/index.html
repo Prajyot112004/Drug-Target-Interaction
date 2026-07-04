@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DrugTarget AI - DTI Predictor</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-dna"></i>
+                <h1>DrugTarget <span>AI</span></h1>
+            </div>
+            <p>Virtual Drug-Target Interaction Predictor</p>
+            <small>Random Forest • Davis Dataset (now XGBoost)</small>
+        </header>
+
+        <main>
+            <div class="input-grid">
+                <div class="card">
+                    <h2><i class="fas fa-pills"></i> Drug Molecule</h2>
+                    <label for="smiles">SMILES String</label>
+                    <textarea id="smiles" rows="3" placeholder="Paste SMILES here..."></textarea>
+                    <div class="upload-group">
+                        <label class="upload-btn">
+                            <i class="fas fa-upload"></i> Upload SMILES File (.txt or .smi)
+                            <input type="file" id="smilesFile" accept=".txt,.smi" style="display:none;" onchange="handleSmilesUpload(event)">
+                        </label>
+                    </div>
+                    <button onclick="loadExampleDrug()" class="btn-secondary">Load Aspirin Example</button>
+                </div>
+
+                <div class="card">
+                    <h2><i class="fas fa-protein"></i> Target Protein</h2>
+                    <label for="fasta">FASTA Sequence</label>
+                    <textarea id="fasta" rows="8" placeholder="Paste FASTA sequence here..."></textarea>
+                    <div class="upload-group">
+                        <label class="upload-btn">
+                            <i class="fas fa-upload"></i> Upload FASTA File (.fasta or .txt)
+                            <input type="file" id="fastaFile" accept=".fasta,.txt" style="display:none;" onchange="handleFastaUpload(event)">
+                        </label>
+                    </div>
+                    <button onclick="loadExampleProtein()" class="btn-secondary">Load Example Protein</button>
+                </div>
+            </div>
+
+            <div class="predict-section">
+                <button onclick="predictInteraction()" class="btn-primary" id="predictBtn">
+                    <i class="fas fa-magic"></i> Predict Binding Affinity
+                </button>
+                
+                <button onclick="window.location.href='evaluation.html'" class="btn-secondary" style="margin-top: 15px;">
+                    <i class="fas fa-chart-bar"></i> View Model Evaluation
+                </button>
+                
+                <button onclick="window.location.href='api_docs.html'" class="btn-secondary" style="margin-top: 15px;">
+                    <i class="fas fa-terminal"></i> View API Docs
+                </button>
+            </div>
+
+            <div class="result-card" id="resultCard" style="display: none;">
+                <h2>Prediction Result</h2>
+                <div class="result-content">
+                    <div class="affinity-score">
+                        <span id="affinityValue">0.00</span>
+                        <span class="unit">pKd</span>
+                    </div>
+                    <p id="interpretation" class="interpretation"></p>
+                    <p id="confidence" class="confidence"></p>
+                </div>
+                <button onclick="resetForm()" class="btn-secondary">New Prediction</button>
+            </div>
+        </main>
+
+        <footer>
+            <p>Supports Paste + File Upload • Step-by-Step ML Project</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
